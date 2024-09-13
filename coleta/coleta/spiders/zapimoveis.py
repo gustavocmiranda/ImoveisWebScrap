@@ -1,11 +1,13 @@
 import scrapy
 from urllib.parse import urlencode
+from dotenv import dotenv_values 
 
 
-API_KEY = 'c3c6850f-a8ed-4aad-937a-512efb9d5d00'
+
+config = dotenv_values(".env")
 
 def get_scrapeops_url(url):
-    payload = {'api_key': API_KEY, 'url': url, 'bypass': 'cloudflare_level_1'}
+    payload = {'api_key': config['API_KEY'], 'url': url, 'bypass': 'cloudflare_level_1'}
     proxy_url = 'https://proxy.scrapeops.io/v1/?' + urlencode(payload)
     return proxy_url
 
