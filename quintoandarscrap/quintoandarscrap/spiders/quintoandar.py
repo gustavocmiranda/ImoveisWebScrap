@@ -14,10 +14,14 @@ class QuintoandarSpider(scrapy.Spider):
         ))
 
     async def parse(self, response):
-        cards_casas = response.css('div[data-testid="house-card-container"]').getall()
+        cards_casas = response.css('div[data-testid="house-card-container"]')
         for card in cards_casas:
             yield {
-                "casa": card 
+                "tipo": card.css('h2[class="Cozy__CardTitle-Metadata Dg2zLY"]::text').get(),
+                "preco": card.css('h3[class="CozyTypography xih2fc EKXjIf EqjlRj"]::text').get(),
+                "preco_condominio": card.css('h3[class="CozyTypography xih2fc _72Hu5c Ci-jp3"]::text').get(),
+                "metro_quarto_vaga": card.css('h3[class="CozyTypography o6Ojuq xih2fc EKXjIf A68t3o"]::text').get(),
+                "endereco": card.css('h2[class="CozyTypography xih2fc _72Hu5c Ci-jp3"]::text').get()
             }
 
 
