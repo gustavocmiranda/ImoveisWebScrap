@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "imoveiswebscrap"
+version = "0.1.0"
+description = ""
+authors = ["Gustavo Miranda <gustavocataldomiranda@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+scrapy = "^2.11.2"
+scrapy-playwright = "^0.0.41"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

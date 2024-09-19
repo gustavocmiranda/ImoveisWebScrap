@@ -8,6 +8,6 @@
 from itemadapter import ItemAdapter
 
 
-class ColetaPipeline:
+class QuintoandarscrapPipeline:
     def process_item(self, item, spider):
         return item
