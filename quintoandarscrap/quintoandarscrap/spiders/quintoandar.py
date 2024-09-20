@@ -9,7 +9,20 @@ class QuintoandarSpider(scrapy.Spider):
         url = "https://www.quintoandar.com.br/comprar/imovel/recreio-dos-bandeirantes-rio-de-janeiro-rj-brasil"
         yield scrapy.Request(url, meta=dict(
             playwright=True,
-            playwright_include_page=True,
+            # playwright_include_page=True,
+            playwright_page_methods = [
+                PageMethod("click", 'button[aria-label="Ver mais"]'),
+                PageMethod("wait_for_timeout", 2000),
+                PageMethod("click", 'button[aria-label="Ver mais"]'),
+                PageMethod("wait_for_timeout", 2000),
+                PageMethod("click", 'button[aria-label="Ver mais"]'),
+                PageMethod("wait_for_timeout", 2000),
+                PageMethod("click", 'button[aria-label="Ver mais"]'),
+                PageMethod("wait_for_timeout", 2000),
+                PageMethod("click", 'button[aria-label="Ver mais"]'),
+                PageMethod("wait_for_timeout", 2000),
+
+            ],
             errback=self.errback,
         ))
 
