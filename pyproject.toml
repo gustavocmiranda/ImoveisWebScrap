@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.11"
 scrapy = "^2.11.2"
 scrapy-playwright = "^0.0.41"
+pandas = "^2.2.3"
 
 
 [build-system]
