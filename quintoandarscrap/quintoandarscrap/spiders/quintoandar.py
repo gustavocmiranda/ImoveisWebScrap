@@ -5,7 +5,7 @@ import logging
 # Define the async function to handle clicking process
 async def click_ver_mais_button(page):
     click_count = 0
-    while click_count < 10:  # Click up to 10 times
+    while click_count < 3:  # Click up to 10 times
         try:
             # Wait for the "Ver mais" button to appear
             await page.wait_for_selector('button[aria-label="Ver mais"]', timeout=10000)

@@ -1,11 +1,12 @@
-from transform import limpar_dados
-from extract import extrair_dados
+from src.transform import limpar_dados
+from src.extract import run_crawler
+from quintoandarscrap.quintoandarscrap.spiders.quintoandar import QuintoandarSpider
 
 path = 'data/casas.jsonl'
 
 def main():
 
-    extrair_dados(path=path)
+    run_crawler(crawler=QuintoandarSpider, path= path)
     df = limpar_dados(path=path)
 
     print(df)
