@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-# pd.options.display.float_format = lambda x: f'{x:,.2f}'.replace(',', 'X').replace('.', ',').replace('X', '.')
+pd.options.display.float_format = lambda x: f'{x:,.2f}'.replace(',', 'X').replace('.', ',').replace('X', '.')
 
 def limpar_dados(path: str) -> pd.DataFrame:
     """
