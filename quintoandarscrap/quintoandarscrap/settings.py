@@ -9,6 +9,8 @@
 
 BOT_NAME = "quintoandarscrap"
 
+LOG_LEVEL = 'WARNING'
+
 SPIDER_MODULES = ["quintoandarscrap.spiders"]
 NEWSPIDER_MODULE = "quintoandarscrap.spiders"
 

@@ -5,23 +5,23 @@ import logging
 # Define the async function to handle clicking process
 async def click_ver_mais_button(page):
     click_count = 0
-    while click_count < 3:  # Click up to 10 times
+    while True:  # Click up to 10 times
         try:
             # Wait for the "Ver mais" button to appear
-            await page.wait_for_selector('button[aria-label="Ver mais"]', timeout=10000)
+            await page.wait_for_selector('button[aria-label="Ver mais"]', timeout=50000)
             
             # Scroll into view and click the button
             # await page.evaluate('document.querySelector(\'button[aria-label="Ver mais"]\').scrollIntoView()')
             await page.click('button[aria-label="Ver mais"]')
             
             click_count += 1
-            logging.info(f"Button clicked {click_count} times")
+            logging.warning(f"Button clicked {click_count} times")
 
             # Wait for new content (like new house cards) to be loaded
-            await page.wait_for_selector('div[data-testid="house-card-container"]', timeout=10000)
+            # await page.wait_for_selector('div[data-testid="house-card-container"]', timeout=10000)
 
             # Wait for 2 seconds before the next click
-            await page.wait_for_timeout(2000)
+            # await page.wait_for_timeout(2000)
         except Exception as e:
             logging.error(f"Error clicking button: {e}")
             break  # Stop trying if there's an issue
