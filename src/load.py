@@ -1,10 +1,18 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
+from sqlalchemy.exc import IntegrityError
 from dotenv import load_dotenv
 import pandas as pd
 import os
 
 
 def upar_dados_no_banco(df: pd.DataFrame):
+    '''
+    Função que carrega os dados em um banco de dados Postgres
+    As informações necessária para se conectar ao banco devem estar em um arquivo .env na raíz do projeto, 
+    e serão lidas pela função load_dotenv()
+
+    args: df(DataFrame contendo as informações já limpas e de acordo com a estrutura do banco)
+    '''
     load_dotenv()
 
     DB_USER = os.getenv("DB_USER")
@@ -18,7 +26,23 @@ def upar_dados_no_banco(df: pd.DataFrame):
         print("Conexão estabelecida")
 
         # Envie o DataFrame para o banco de dados
-        df.to_sql('imoveis', con=engine, if_exists='append', index=False)
-        print("to_sql executado")
+        with engine.connect() as conn:
+            for _ , row in df.iterrows():
+                trans = conn.begin()
+                try:
+                    insert_query = text("""
+                    INSERT INTO imoveis (tipo, preco, preco_condominio, endereco, bairro, cidade, metros, quartos, vagas, data_coleta)
+                    VALUES (:tipo, :preco, :preco_condominio, :endereco, :bairro, :cidade, :metros, :quartos, :vagas, :data_coleta)
+                    ON CONFLICT (tipo, endereco, bairro, cidade, metros, quartos) DO NOTHING;
+                    """)
+                    
+                    conn.execute(insert_query, {"tipo": row['tipo'], "preco": row['preco'], "preco_condominio": row['preco_condominio'], "endereco": row['endereco'], "bairro": row['bairro'], "cidade": row['cidade'], "metros": row['metros'], "quartos": row['quartos'], "vagas": row['vagas'], "data_coleta": row['data_coleta']})
+                    trans.commit()
+                    print("Query executada")
+
+                except Exception as ex:
+                    print(ex)
+                    trans.rollback()
+            print("to_sql executado")
     except Exception as e:
         print(e)

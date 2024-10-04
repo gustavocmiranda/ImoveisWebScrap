@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from datetime import datetime
+import os
 
 pd.options.display.float_format = lambda x: f'{x:,.2f}'.replace(',', 'X').replace('.', ',').replace('X', '.')
 
@@ -34,8 +35,11 @@ def limpar_dados(path: str) -> pd.DataFrame:
 
     df['data_coleta'] = datetime.today()
 
+    df.drop_duplicates(subset=['tipo', 'endereco', 'bairro', 'cidade', 'metros', 'quartos'], inplace=True)
 
     df.drop('metro_quarto_vaga', axis=1, inplace=True)
     df.drop('bairro_cidade', axis=1, inplace=True)
+
+    os.remove(path)
 
     return df
