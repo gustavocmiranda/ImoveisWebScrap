@@ -1,8 +1,9 @@
 import os
 import subprocess
-import scrapy
 
+import scrapy
 from scrapy.crawler import CrawlerProcess
+
 
 def run_crawler(spider: scrapy.Spider, path: str):
     """
@@ -16,13 +17,15 @@ def run_crawler(spider: scrapy.Spider, path: str):
         os.makedirs('data')
 
     cmd = [
-        'scrapy', 'crawl', spider.name,
-        '-o', f'../{path}',  # Saída no arquivo JSONL
+        'scrapy',
+        'crawl',
+        spider.name,
+        '-o',
+        f'../{path}',  # Saída no arquivo JSONL
     ]
 
     try:
         subprocess.run(cmd, check=True, cwd='quintoandarscrap')
-        print(f"Chamada crawl realizada com sucesso")
+        print(f'Chamada crawl realizada com sucesso')
     except subprocess.CalledProcessError as e:
-        print(f"Erro ao executar o crawler: {e}")
-    
+        print(f'Erro ao executar o crawler: {e}')
