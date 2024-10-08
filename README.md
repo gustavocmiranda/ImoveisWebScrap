@@ -31,7 +31,7 @@ Para rodar este projeto, é necessário ter o **Poetry** instalado. Siga os pass
 Este projeto realiza **Web Scraping** de um site de venda de imóveis, extraindo informações relevantes para análise e armazenamento. A pipeline do projeto é composta pelas seguintes etapas:
 
 1. **Extração de dados (Web Scraping)**:  
-   Utiliza a biblioteca Scrapy para coletar dados de imóveis à venda, como tipo, preço, localização, metragem, número de quartos e vagas de garagem. Os dados são salvos temporariamente em um arquivo no formato `.jsonl`.
+   Utiliza a biblioteca Scrapy para coletar dados de imóveis à venda, como tipo, preço, localização, metragem, número de quartos e vagas de garagem. Os dados são salvos temporariamente em um arquivo no formato `.jsonl`. A extração de dados padrão está para imóveis da cidade de São Paulo, para mudar basta alterar a variável url no arquivo `pipeline.py`.
 
 2. **Transformação dos dados**:  
    Após a extração, os dados são carregados em um **DataFrame** do Pandas, onde passam por um processo de limpeza e transformação para padronização e adequação às necessidades da análise e armazenamento. São tratadas inconsistências, dados ausentes e criadas colunas úteis como bairro e cidade.
