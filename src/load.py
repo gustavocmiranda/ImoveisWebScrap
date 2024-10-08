@@ -58,11 +58,11 @@ def upar_dados_no_banco(df: pd.DataFrame):
                         },
                     )
                     trans.commit()
-                    print('Query executada')
+                    # print('Query executada')
 
                 except Exception as ex:
                     print(ex)
                     trans.rollback()
-            print('to_sql executado')
+            print('Executado')
     except Exception as e:
         print(e)

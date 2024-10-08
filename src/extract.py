@@ -5,7 +5,7 @@ import scrapy
 from scrapy.crawler import CrawlerProcess
 
 
-def run_crawler(spider: scrapy.Spider, path: str):
+def run_crawler(spider: scrapy.Spider, path: str, url: str):
     """
     Função que chama o scrapy crawl e inicia a raspagem dos dados.
 
@@ -22,6 +22,8 @@ def run_crawler(spider: scrapy.Spider, path: str):
         spider.name,
         '-o',
         f'../{path}',  # Saída no arquivo JSONL
+        '-a',  # Passa argumento para o spider
+        f'url={url}'  # Passando a URL como argumento
     ]
 
     try:

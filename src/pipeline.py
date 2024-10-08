@@ -6,11 +6,12 @@ from src.load import upar_dados_no_banco
 from src.transform import limpar_dados
 
 path = 'data/casas.jsonl'
+url = 'https://www.quintoandar.com.br/comprar/imovel/sao-paulo-sp-brasil'
 
 
 def main():
     """Pipeline que faz as chamadas das funções de Extract, Transform e Load."""
-    run_crawler(crawler=QuintoandarSpider, path=path)
+    run_crawler(spider=QuintoandarSpider, path=path, url= url)
     df = limpar_dados(path=path)
     upar_dados_no_banco(df=df)
 

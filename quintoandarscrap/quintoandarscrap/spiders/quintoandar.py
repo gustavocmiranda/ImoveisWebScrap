@@ -29,10 +29,14 @@ class QuintoandarSpider(scrapy.Spider):
     name = 'quintoandar'
     allowed_domains = ['www.quintoandar.com.br']
 
+    def __init__(self, url=None, *args, **kwargs):
+        super(QuintoandarSpider, self).__init__(*args, **kwargs)
+        self.url = url
+
     def start_requests(self):
-        url = 'https://www.quintoandar.com.br/comprar/imovel/recreio-dos-bandeirantes-rio-de-janeiro-rj-brasil'
+        
         yield scrapy.Request(
-            url,
+            self.url,
             meta=dict(
                 playwright=True,
                 playwright_include_page=True,
