@@ -11,11 +11,16 @@ Para rodar este projeto, é necessário ter o **Poetry** instalado. Siga os pass
 
 1. **Navegue até a raiz do projeto**
 2. Preencha o arquivo `.env` com os dados de conexão do seu banco de dados.
-3. Instale as dependências listadas no arquivo requirements.txt:
+3. Crie o ambiente virtual com as dependências do projeto:
    ```bash
-   poetry add $(cat requirements.txt)
+   poetry install
+   poetry shell
    ```
-4. Execute o pipeline do projeto:
+4. Instale o Playwright:
+   ```bash
+   playwright install
+   ```
+5. Execute o pipeline do projeto:
    - No Linux ou Mac:
      ```bash
      python3 -m src.pipeline
