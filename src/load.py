@@ -9,7 +9,7 @@ from sqlalchemy.exc import IntegrityError
 def upar_dados_no_banco(df: pd.DataFrame):
     """
     Função que carrega os dados em um banco de dados Postgres.
-    
+
     As informações necessária para se conectar ao banco devem estar em um arquivo .env na raíz do projeto,
     e serão lidas pela função load_dotenv()
 

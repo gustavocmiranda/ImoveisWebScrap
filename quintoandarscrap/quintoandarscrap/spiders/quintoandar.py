@@ -7,7 +7,7 @@ from scrapy_playwright.page import PageMethod
 # Define the async function to handle clicking process
 async def click_ver_mais_button(page):
     click_count = 0
-    while True:  # Click up to 10 times
+    while click_count < 100:  # Click up to 10 times
         try:
             # Wait for the "Ver mais" button to appear
             await page.wait_for_selector(
@@ -34,7 +34,7 @@ class QuintoandarSpider(scrapy.Spider):
         self.url = url
 
     def start_requests(self):
-        
+
         yield scrapy.Request(
             self.url,
             meta=dict(

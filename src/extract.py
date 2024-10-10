@@ -23,7 +23,7 @@ def run_crawler(spider: scrapy.Spider, path: str, url: str):
         '-o',
         f'../{path}',  # Saída no arquivo JSONL
         '-a',  # Passa argumento para o spider
-        f'url={url}'  # Passando a URL como argumento
+        f'url={url}',  # Passando a URL como argumento
     ]
 
     try:
